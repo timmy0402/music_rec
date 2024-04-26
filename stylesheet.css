@@ -1,0 +1,72 @@
+.main {
+    margin-left: 170px;
+    /* Same as the width of the sidenav */
+    /* Increased text to enable scrolling */
+    padding: 0px 0px;
+}
+
+.SearchBarBackground {
+    color: grey;
+}
+
+.SearchBar {
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 150px;
+    margin-left: 9px;
+    font-size: 15px;
+}
+
+.SideNav {
+    height: 100%;
+    width: 170px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(75, 46, 131);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.SideNav a:link {
+    color: white;
+    text-decoration: none;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+}
+
+.SideNav a:visited {
+    color: white;
+}
+
+.TopOfPage {
+    background-color: rgb(201, 166, 60);
+    padding: 20px;
+    margin: 0px;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.TopOfPage a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.SocialMediaPlatforms {
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.fa-solid.fa-house,
+.fa-brands.fa-linkedin,
+.fa-brands.fa-square-github,
+.fa-solid.fa-envelope {
+    font-size: 30px;
+}
