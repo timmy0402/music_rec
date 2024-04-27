@@ -2,6 +2,10 @@ import json
 from difflib import get_close_matches
 from typing import Union
 
+# getting the token and endpoints for Spotify API
+API_KEY = "9ea61d2000434f108d05322b9182bfcd"
+API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+
 # Load the data from the json file
 def load_knowledge_base(file_path: str) -> dict:
     with open(file_path, 'r') as file:
