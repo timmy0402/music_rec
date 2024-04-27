@@ -7,10 +7,8 @@ CORS(app)
 
 @app.route('/run_python', methods=['GET','POST'])
 def run_python():
-    data = request.get_json()
-    # Your Python code goes here
-    result = data['number'] * 2  # Example Python code
-    return jsonify({'result': result})
+    
+    return request.data
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=8000, debug=True)

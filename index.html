@@ -64,10 +64,10 @@
                 $.ajax({
                   url: 'http://localhost:8000/run_python',
                   type: 'POST',
-                  contentType: 'application/json',
-                  data: JSON.stringify({ number: 5 }),
+                  contentType: 'text/plain',
+                  data: text,
                   success: function (response) {
-                    console.log(response.result);  // Should print 10
+                    console.log(response);  // Should print 10
                   }
                 });
 
