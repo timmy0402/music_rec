@@ -113,24 +113,6 @@ def get_answer_for_question(question: str, knowledge_base: dict) -> Union[str, N
         if q["question"] == question:
             return q["answer"]
 
-# Fetch the music recommendations from the Spotify API 
-# The music recommendations will be based on the seed artists and the limit
-# not working yet
-def fetch_music_recommendations(access_token: str, seed_artists: list[str], limit: int) -> list[dict]:
-    endpoint = API_URL_GENRE
-    params = {
-        'seed_artists': ','.join(seed_artists),
-        'limit': limit,
-    }
-    headers = {'Authorization': f'Bearer {access_token}'}
-    response = requests.get(endpoint, params=params, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        return data['tracks']
-    else:
-        print(f"Failed to fetch recommendations: {response.status_code} - {response.text}")
-        return []
-
 
 # chat bot function
 def chat_bot():
@@ -141,13 +123,13 @@ def chat_bot():
     # The chat bot will keep running until the user types "quit"
     while True:
         user_input: str = input("You: ")
-        
+            
         if user_input.lower() == "quit":
             break
         
         # The chat bot will find the best match for the user question
         best_match: Union[str, None] = find_best_match(user_input, [q["question"] for q in knowledge_base["question"]])
-        
+           
         # If the best match is found, the chat bot will get the answer from the knowledge base
         if best_match:
             answer: Union[str, None] = get_answer_for_question(best_match, knowledge_base)
@@ -196,5 +178,7 @@ if __name__ == "__main__":
     #for idx, song in enumerate(songs):
     #    print(f"{idx + 1}. {song['name']}")
     
+    #word = "work"
+    #detect_word_in_inout(word)
     
     chat_bot()
