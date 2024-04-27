@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Music Recomendation</title>
   <link href="css/1.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 
 <body>
@@ -47,22 +49,23 @@
         </head>
         <body>
             <label for="textbox">Enter your text:</label>
-            <input type="text" id="textbox" name="name">
-            <button onclick="displayText()">Enter</button>
+            <input type="text" id="textbox" placeholder="Talk to ChatBot" name="name">
+            <button onclick="chatbot_clickevent()">Enter</button>
             <div id="displayArea"></div>
 
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.sin.js"></script>
+
             <script>
-                function displayText() {
+                function chatbot_clickevent() {
+                  $.ajax({
+                    url: "Circle.py", context: document.getElementById("displayArea").innerText = placeholder;
+                  })
                     // Get the value from the text box // Replace with chatbot
                     var text = document.getElementById("textbox").value;
-                    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
-                    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-                      <py-script>
-
-                      <py-script>
+                  
                     // Display the text in a div
                     document.getElementById("displayArea").innerText = text;
-                
+                    }
             </script>
         </body>
         </html>
