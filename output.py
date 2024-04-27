@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/run_python', methods=['GET','POST'])
 def run_python():
-    
+    cd.chatbot(request.data)
     return request.data
 
 if __name__ == '__main__':
