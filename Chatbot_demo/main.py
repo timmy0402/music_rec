@@ -1,5 +1,6 @@
 import json
 import requests
+import base64
 from difflib import get_close_matches
 from typing import Union
 from flask import request, Flask
@@ -7,14 +8,29 @@ from flask import request, Flask
 # getting the token and endpoints for Spotify API
 API_KEY = "9ea61d2000434f108d05322b9182bfcd"
 API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
-
 #setting flask framework
 app = Flask(__name__)
 
+#getting token
+def token_getter():
+    auth_options = {
+    'url': 'https://accounts.spotify.com/api/token',
+    'headers': {
+        'Authorization': 'Basic ' + base64.b64encode((API_KEY + ':' + '05d158aa10c241d59773219d6ce3a4ca').encode()).decode()
+    },
+    'form': {
+        'grant_type': 'client_credentials'
+  }
+}   
+
+    response = requests.post(auth_options['url'], headers=auth_options['headers'], data=auth_options['form'])
+    if response.status_code == 200:
+        token = response.json()['access_token']
+    return token
+
 def looking_genre():
-    API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
     headers = {
-        'Authorization' : 'Bearer' + API_KEY
+        'Authorization' : 'Bearer ' + token_getter()
     }
     response = requests.request("GET",API_URL, headers=headers)
     formatted_response = json.loads((response.text))
@@ -70,5 +86,6 @@ def chat_bot():
 
 
 if __name__ == "__main__":
+    token_getter()
     looking_genre()
     chat_bot()
