@@ -41,34 +41,39 @@
 
         <p>
           <!-- Place Holder the implement chatbot-->
-        <html lang="en">
-        <head>
+          <html lang="en">
+
+          <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Text Box Example</title>
-        </head>
-        <body>
+          </head>
+
+          <body>
             <label for="textbox">Enter your text:</label>
             <input type="text" id="textbox" placeholder="Talk to ChatBot" name="name">
             <button onclick="chatbot_clickevent()">Enter</button>
             <div id="displayArea"></div>
 
-            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.sin.js"></script>
+            <script type="text/javascript"
+              src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.sin.js"></script>
 
             <script>
-                function chatbot_clickevent() {
-                  $.ajax({
-                    url: "Circle.py", context: document.getElementById("displayArea").innerText = placeholder;
-                  })
-                    // Get the value from the text box // Replace with chatbot
-                    var text = document.getElementById("textbox").value;
-                  
-                    // Display the text in a div
-                    document.getElementById("displayArea").innerText = text;
-                    }
+              function chatbot_clickevent() {
+                $.ajax({
+                  url: "/process",
+                  context: document.getElementById("displayArea").innerText = placeholder,
+                })
+                // Get the value from the text box // Replace with chatbot
+                var text = document.getElementById("textbox").value;
+
+                // Display the text in a div
+                document.getElementById("displayArea").innerText = text;
+              }
             </script>
-        </body>
-        </html>
+          </body>
+
+          </html>
 
         </p>
 
