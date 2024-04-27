@@ -13,6 +13,7 @@ API_KEY = "9ea61d2000434f108d05322b9182bfcd"
 API_URL_GENRE = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
 API_URL_ARTIST ="https://api.spotify.com/v1/artists/7hJcb9fa4alzcOq3EaNPoG?si=9BdSHaYOSCS63NeIUeXqmg"
 API_URL_SEARCH = "https://api.spotify.com/v1/search"
+
 #setting flask framework
 app = Flask(__name__)
 
@@ -150,6 +151,7 @@ def chat_bot():
         # If the best match is found, the chat bot will get the answer from the knowledge base
         if best_match:
             answer: Union[str, None] = get_answer_for_question(best_match, knowledge_base)
+        
             print(f'bot: {answer}' if answer else "bot: I don't know the answer.")
             
             artist_name = input("You: ")
@@ -168,13 +170,15 @@ def chat_bot():
             print('bot: I don\'t know the answer. Can you teach me?')
             
             new_answer: str = input('Type the answer or "skip" to skip: ')
-            # If the user types "skip", the chat bot will skip the question
+            #If the user types "skip", the chat bot will skip the question
             if new_answer.lower() != "skip":
                 # The user question and the answer will be saved in the knowledge base
                 knowledge_base["question"].append({"question": user_input, "answer": new_answer})
                 save_knowledge_base('knowledge_base.json', knowledge_base)
                 print('bot: Thank you for teaching me!')
 
+
+ 
 # Run the chat bot
 if __name__ == "__main__":
     #token_getter()
