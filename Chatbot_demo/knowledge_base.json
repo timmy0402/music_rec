@@ -10,7 +10,7 @@
     },
     {
       "question": "What genres of music are you interested in?",
-      "answer": "I can suggest songs from a variety of genres such as pop, rock, hip-hop, jazz, classical, and more. Just let me know your preference!"
+      "answer": "I can suggest songs from the artist that you interested in. What is the artist that you like?"
     },
     {
       "question": "Could you recommend some upbeat songs?",
@@ -26,11 +26,15 @@
     },
     {
       "question": "What's trending in music right now?",
-      "answer": "I can provide you with the latest trending songs across various genres. Is there a specific genre you're interested in?"
+      "answer": "I can provide you with the latest trending songs across various genres. Is there a specific artist you're interested in?"
     },
     {
       "question": "f",
       "answer": "f"
+    },
+    {
+      "question": "recommend a song",
+      "answer": "Sure! Which Artist do you interested in?"
     }
   ]
 }

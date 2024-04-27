@@ -1,13 +1,18 @@
 import json
 import requests
 import base64
+#import get
 from difflib import get_close_matches
 from typing import Union
 from flask import request, Flask
 
 # getting the token and endpoints for Spotify API
 API_KEY = "9ea61d2000434f108d05322b9182bfcd"
-API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+
+#ENDPOINTS
+API_URL_GENRE = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+API_URL_ARTIST ="https://api.spotify.com/v1/artists/7hJcb9fa4alzcOq3EaNPoG?si=9BdSHaYOSCS63NeIUeXqmg"
+API_URL_SEARCH = "https://api.spotify.com/v1/search"
 #setting flask framework
 app = Flask(__name__)
 
@@ -33,11 +38,55 @@ def looking_genre():
     headers = {
         'Authorization' : 'Bearer ' + token_getter()
     }
-    response = requests.request("GET",API_URL, headers=headers)
+    response = requests.request("GET",API_URL_GENRE, headers=headers)
     formatted_response = json.loads((response.text))
     print(formatted_response)
     return formatted_response
 
+#looking for artist
+def looking_artist():
+    headers = {
+        'Authorization' : 'Bearer ' + token_getter()
+    }
+    response = requests.request("GET",API_URL_ARTIST, headers=headers)
+    formatted_response = json.loads((response.text))
+    print(formatted_response)
+    return formatted_response
+
+#searching method
+def searching_for_artist(artist_name):
+    headers = {
+        'Authorization' : 'Bearer ' + token_getter()
+    }
+    response = requests.request("GET",API_URL_ARTIST, headers=headers)
+    
+    query = f"?q={artist_name}&type=artist&limit=1"
+    query_url = API_URL_SEARCH + query
+    result = requests.get(query_url, headers=headers)
+    json_result = json.loads(result.content)["artists"]["items"]
+    #print(json_result)
+    if len(json_result) == 0:
+        print("No artist with this name is exists...")
+        return None
+    
+    return json_result[0]
+    
+    #formatted_response = json.loads((response.text))
+    #print(formatted_response)
+    #return formatted_response
+
+# get song by the artist name 
+def get_songs_by_artist(artist_id):
+    headers = {
+        'Authorization' : 'Bearer ' + token_getter()
+    }
+    API_URL_SONGS = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?market=US"
+    response = requests.request("GET",API_URL_SONGS, headers=headers)
+    #result = requests.get(API_URL_SONGS, headers=headers)
+    json_result = json.loads(response.content)["tracks"]
+    return json_result
+    
+    
 # Load the data from the json file
 def load_knowledge_base(file_path: str) -> dict:
     with open(file_path, 'r') as file:
@@ -67,7 +116,7 @@ def get_answer_for_question(question: str, knowledge_base: dict) -> Union[str, N
 # The music recommendations will be based on the seed artists and the limit
 # not working yet
 def fetch_music_recommendations(access_token: str, seed_artists: list[str], limit: int) -> list[dict]:
-    endpoint = API_URL
+    endpoint = API_URL_GENRE
     params = {
         'seed_artists': ','.join(seed_artists),
         'limit': limit,
@@ -80,6 +129,7 @@ def fetch_music_recommendations(access_token: str, seed_artists: list[str], limi
     else:
         print(f"Failed to fetch recommendations: {response.status_code} - {response.text}")
         return []
+
 
 # chat bot function
 # uncommented the below line to host on Flask Framework
@@ -103,6 +153,19 @@ def chat_bot():
         if best_match:
             answer: Union[str, None] = get_answer_for_question(best_match, knowledge_base)
             print(f'bot: {answer}' if answer else "bot: I don't know the answer.")
+            
+            artist_name = input("You: ")
+            results = searching_for_artist(artist_name)
+            print("Top songs from: " + results["name"])
+    
+            artist_id = results["id"]
+            #print(artist_id)
+    
+            songs = get_songs_by_artist(artist_id)
+            #print(songs)
+            for idx, song in enumerate(songs):
+                print(f"{idx + 1}. {song['name']}")
+            
         else:
             print('bot: I don\'t know the answer. Can you teach me?')
             
@@ -116,8 +179,21 @@ def chat_bot():
 
 # Run the chat bot
 if __name__ == "__main__":
-    token_getter()
-    looking_genre()
-    #chat_bot()
-    #Uncommented if running on a Flask hosting site 
-    #app.run()
+    #token_getter()
+    #looking_genre()
+    #looking_artist()
+    
+    #results = searching_for_artist("Coldplay")
+    #print(results["name"])
+    
+    #artist_id = results["id"]
+    #print(artist_id)
+    
+    #songs = get_songs_by_artist(artist_id)
+    #print(songs)
+    #for idx, song in enumerate(songs):
+    #    print(f"{idx + 1}. {song['name']}")
+    
+    
+    chat_bot()
+
