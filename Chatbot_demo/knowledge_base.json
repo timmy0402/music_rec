@@ -31,7 +31,10 @@
     {
       "question": "What is the best song of all time?",
       "answer": "Here is some suggestion artist that have the best song of all time: Michael Jackson, The Beatles, Queen, and Bob Dylan."
+    },
+    {
+      "question": "what is some good music",
+      "answer": "Its the music that you enjoy. Is there any artist that you enjoy?"
     }
-    
   ]
 }
