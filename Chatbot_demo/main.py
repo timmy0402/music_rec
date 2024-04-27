@@ -82,6 +82,8 @@ def fetch_music_recommendations(access_token: str, seed_artists: list[str], limi
         return []
 
 # chat bot function
+# uncommented the below line to host on Flask Framework
+#@app.route('/',methods=['GET', 'POST'])
 def chat_bot():
     knowledge_base: dict = load_knowledge_base("knowledge_base.json")
     
@@ -116,4 +118,6 @@ def chat_bot():
 if __name__ == "__main__":
     token_getter()
     looking_genre()
-    chat_bot()
+    #chat_bot()
+    #Uncommented if running on a Flask hosting site 
+    #app.run()
