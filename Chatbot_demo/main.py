@@ -1,10 +1,25 @@
 import json
+import requests
 from difflib import get_close_matches
 from typing import Union
+from flask import request, Flask
 
 # getting the token and endpoints for Spotify API
 API_KEY = "9ea61d2000434f108d05322b9182bfcd"
 API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+
+#setting flask framework
+app = Flask(__name__)
+
+def looking_genre():
+    API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+    headers = {
+        'Authorization' : 'Bearer' + API_KEY
+    }
+    response = requests.request("GET",API_URL, headers=headers)
+    formatted_response = json.loads((response.text))
+    print(formatted_response)
+    return formatted_response
 
 # Load the data from the json file
 def load_knowledge_base(file_path: str) -> dict:
@@ -55,4 +70,5 @@ def chat_bot():
 
 
 if __name__ == "__main__":
+    looking_genre()
     chat_bot()
