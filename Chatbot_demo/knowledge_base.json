@@ -5,29 +5,32 @@
       "answer": "hello, I'm Music bot. How can I help you?"
     },
     {
-        "question": "hello ",
-        "answer": "hello, I'm Music bot. How can I help you?"
+      "question": "hello ",
+      "answer": "hello, I'm Music bot. How can I help you?"
     },
     {
-        "question": "What genres of music are you interested in?",
-        "answer": "I can suggest songs from a variety of genres such as pop, rock, hip-hop, jazz, classical, and more. Just let me know your preference!"
+      "question": "What genres of music are you interested in?",
+      "answer": "I can suggest songs from a variety of genres such as pop, rock, hip-hop, jazz, classical, and more. Just let me know your preference!"
     },
     {
-        "question": "Could you recommend some upbeat songs?",
-        "answer": "Sure! What genre of upbeat music are you looking for?"
+      "question": "Could you recommend some upbeat songs?",
+      "answer": "Sure! What genre of upbeat music are you looking for?"
     },
     {
-        "question": "Do you have any favorite artists or bands?",
-        "answer": "I can suggest songs similar to your favorite artists or bands. Who are your favorites?"
+      "question": "Do you have any favorite artists or bands?",
+      "answer": "I can suggest songs similar to your favorite artists or bands. Who are your favorites?"
     },
     {
-        "question": "Can you suggest some relaxing music?",
-        "answer": "Of course! What type of relaxing music are you in the mood for? Chill-out, ambient, acoustic?"
+      "question": "Can you suggest some relaxing music?",
+      "answer": "Of course! What type of relaxing music are you in the mood for? Chill-out, ambient, acoustic?"
     },
     {
-        "question": "What's trending in music right now?",
-        "answer": "I can provide you with the latest trending songs across various genres. Is there a specific genre you're interested in?"
+      "question": "What's trending in music right now?",
+      "answer": "I can provide you with the latest trending songs across various genres. Is there a specific genre you're interested in?"
+    },
+    {
+      "question": "Can you suggest some new music releases?",
+      "answer": "I can recommend you the latest music releases from your favorite artists or bands. Who are you interested in?"
     }
-  
   ]
 }

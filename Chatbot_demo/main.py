@@ -32,23 +32,6 @@ def get_answer_for_question(question: str, knowledge_base: dict) -> Union[str, N
         if q["question"] == question:
             return q["answer"]
 
-# Fetch the music recommendations from the Spotify API 
-# The music recommendations will be based on the seed artists and the limit
-# not working yet
-def fetch_music_recommendations(access_token: str, seed_artists: list[str], limit: int) -> list[dict]:
-    endpoint = API_URL
-    params = {
-        'seed_artists': ','.join(seed_artists),
-        'limit': limit,
-    }
-    headers = {'Authorization': f'Bearer {access_token}'}
-    response = requests.get(endpoint, params=params, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        return data['tracks']
-    else:
-        print(f"Failed to fetch recommendations: {response.status_code} - {response.text}")
-        return []
 
 # chat bot function
 def chat_bot():
