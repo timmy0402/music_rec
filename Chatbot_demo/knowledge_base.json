@@ -1,0 +1,16 @@
+{
+  "question": [
+    {
+      "question": "hi ",
+      "answer": "hello, Im ChatGpt"
+    },
+    {
+      "question": "what is bom?",
+      "answer": "bom is hoa anh"
+    },
+    {
+      "question": "recommend me a song",
+      "answer": "Have you try: Hello by Adelle"
+    }
+  ]
+}
