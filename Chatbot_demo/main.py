@@ -28,6 +28,7 @@ def token_getter():
         token = response.json()['access_token']
     return token
 
+#looking for genre TODO
 def looking_genre():
     headers = {
         'Authorization' : 'Bearer ' + token_getter()
