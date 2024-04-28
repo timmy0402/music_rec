@@ -21,7 +21,6 @@ CORS(app)
 
 @app.route('/run_python', methods=['GET','POST'])
 def run_python():
-    print("running")
     data = request.get_json()
     result = chat_bot(data['prompt'])
     return jsonify({'result':chat_bot(data['prompt'])})
@@ -124,8 +123,6 @@ def get_answer_for_question(question: str, knowledge_base: dict) -> Union[str, N
 
 
 # chat bot function
-# uncommented the below line to host on Flask Framework
-#@app.route('/',methods=['GET', 'POST'])
 def chat_bot(user_input):
     knowledge_base: dict = load_knowledge_base("knowledge_base.json")
     
