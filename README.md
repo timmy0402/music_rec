@@ -48,7 +48,7 @@ py3 main.py
 Contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements.
 
 ## Contributors 
-- [Tim Huynh](www.linkedin.com/in/minh-nhat-huynh/)
+- [Tim Huynh](https://www.linkedin.com/in/minh-nhat-huynh/)
 - [Yu Dinh](https://www.linkedin.com/in/dudinh1/)
 - [Sithartha Phengsavanh](https://www.linkedin.com/in/sithartha-phengsavanh-b267a1228/)
 - [Kien Dang](https://www.linkedin.com/in/kiendang1403/)
