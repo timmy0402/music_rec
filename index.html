@@ -61,9 +61,9 @@
               function chatbot_clickevent() {
                 // Get the value from the text box / / Replace with chatbot
                 var text = document.getElementById("textbox").value;
-                let out = ""
+                let out = "";
                 $.ajax({
-                  url: 'http://localhost:8000/run_python',
+                  url: 'http://127.0.0.1:8000/run_python',
                   type: 'POST',
                   contentType: 'application/json',
                   data: JSON.stringify({ prompt: text }),
