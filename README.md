@@ -24,13 +24,13 @@ git clone https://github.com/timmy0402/music_rec
 ```
 cd .\Chatbot_demo\
 ```
-4. Run the command 
+3. Run the command 
 ```
 py3 main.py
 ```
-6. Open `index.html` in your browser to explore the recommendation interface.
-7. Customize the recommendation algorithms in the `main.py` file by changing the finding function in run_python function.
-8. Type in the name of artist or genre in the text box in the index.html file and wait for the result😊🎶
+4. Open `index.html` in your browser to explore the recommendation interface.
+5. Customize the recommendation algorithms in the `main.py` file by changing the finding function in run_python function.
+6. Type in the name of artist or genre in the text box in the index.html file and wait for the result😊🎶
 
 ## Dependencies
 
