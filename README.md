@@ -16,12 +16,21 @@ This repository contains code and resources related to building a music recommen
 
 ## Getting Started
 
-1. Clone this repository to your local machine. 'git clone https://github.com/timmy0402/music_rec'
-2. Change the directory to Chatbot_demo. 'cd .\Chatbot_demo\'
-3. Run the command 'py3 main.py' 
-4. Open `index.html` in your browser to explore the recommendation interface.
-5. Customize the recommendation algorithms in the `main.py` file by changing the finding function in run_python function.
-6. Type in the name of artist or genre in the text box in the index.html file and wait for the result😊🎶
+1. Clone this repository to your local machine.
+```
+git clone https://github.com/timmy0402/music_rec
+```
+2. Change the directory to Chatbot_demo. 
+```
+cd .\Chatbot_demo\
+```
+4. Run the command 
+```
+py3 main.py
+```
+6. Open `index.html` in your browser to explore the recommendation interface.
+7. Customize the recommendation algorithms in the `main.py` file by changing the finding function in run_python function.
+8. Type in the name of artist or genre in the text box in the index.html file and wait for the result😊🎶
 
 ## Dependencies
 
