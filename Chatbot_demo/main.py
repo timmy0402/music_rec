@@ -4,7 +4,8 @@ import base64
 #import get
 from difflib import get_close_matches
 from typing import Union
-from flask import request, Flask
+from flask import request, Flask, jsonify
+from flask_cors import CORS
 
 # getting the token and endpoints for Spotify API
 API_KEY = "9ea61d2000434f108d05322b9182bfcd"
@@ -16,6 +17,13 @@ API_URL_SEARCH = "https://api.spotify.com/v1/search"
 
 #setting flask framework
 app = Flask(__name__)
+CORS(app)
+
+@app.route('/run_python', methods=['GET','POST'])
+def run_python():
+    data = request.get_json()
+    result = chat_bot(data['prompt'])
+    return jsonify({'result':chat_bot(data['prompt'])})
 
 #getting token
 def token_getter():
@@ -117,71 +125,47 @@ def get_answer_for_question(question: str, knowledge_base: dict) -> Union[str, N
 # chat bot function
 # uncommented the below line to host on Flask Framework
 #@app.route('/',methods=['GET', 'POST'])
-def chat_bot():
+def chat_bot(user_input):
     knowledge_base: dict = load_knowledge_base("knowledge_base.json")
     
     access_token = API_KEY
     
-    # The chat bot will keep running until the user types "quit"
-    while True:
-        user_input: str = input("You: ")
-            
-        if user_input.lower() == "quit":
-            break
-        
-        # The chat bot will find the best match for the user question
-        best_match: Union[str, None] = find_best_match(user_input, [q["question"] for q in knowledge_base["question"]])
-           
-        # If the best match is found, the chat bot will get the answer from the knowledge base
-        if best_match:
-            answer: Union[str, None] = get_answer_for_question(best_match, knowledge_base)
-        
-            print(f'bot: {answer}' if answer else "bot: I don't know the answer.")
-            
-            artist_name = input("You: ")
-            results = searching_for_artist(artist_name)
-            print("Top songs from: " + results["name"])
-    
-            artist_id = results["id"]
-            #print(artist_id)
-    
-            songs = get_songs_by_artist(artist_id)
-            #print(songs)
-            for idx, song in enumerate(songs):
-                print(f"{idx + 1}. {song['name']}")
-            
-        else:
-            print('bot: I don\'t know the answer. Can you teach me?')
-            
-            new_answer: str = input('Type the answer or "skip" to skip: ')
-            #If the user types "skip", the chat bot will skip the question
-            if new_answer.lower() != "skip":
-                # The user question and the answer will be saved in the knowledge base
-                knowledge_base["question"].append({"question": user_input, "answer": new_answer})
-                save_knowledge_base('knowledge_base.json', knowledge_base)
-                print('bot: Thank you for teaching me!')
+    #user_input: str = input("You: ")
+    # The chat bot will find the best match for the user question
+    best_match: Union[str, None] = find_best_match(user_input, [q["question"] for q in knowledge_base["question"]])    
+    # If the best match is found, the chat bot will get the answer from the knowledge base
+    if best_match:
+        answer: Union[str, None] = get_answer_for_question(best_match, knowledge_base)
+        #print(f'bot: {answer}' if answer else "bot: I don't know the answer.")
+        if answer:
+            return f'bot: {answer}'
+    else:    
+        artist_name = user_input
+        results = searching_for_artist(artist_name)
+        responseList = [""]
+        #print("Top songs from: " + results["name"])
+        responseList.append(("Top songs from: " + results["name"]))
+        artist_id = results["id"]
+        #print(artist_id)
+        songs = get_songs_by_artist(artist_id)
+        #print(songs)
+        for idx, song in enumerate(songs):
+            #print(f"{idx + 1}. {song['name']}")
+            responseList.append(f"{idx + 1}. {song['name']}")
+        print(responseList)
+        return responseList
+        # TODO For future learning    
+        #else:
+        #    print('bot: I don\'t know the answer. Can you teach me?')
+        #    
+        #    new_answer: str = input('Type the answer or "skip" to skip: ')
+        #    # If the user types "skip", the chat bot will skip the question
+        #    if new_answer.lower() != "skip":
+        #        # The user question and the answer will be saved in the knowledge base
+        #        knowledge_base["question"].append({"question": user_input, "answer": new_answer})
+        #        save_knowledge_base('knowledge_base.json', knowledge_base)
+        #        print('bot: Thank you for teaching me!')
 
-
- 
-# Run the chat bot
-if __name__ == "__main__":
-    #token_getter()
-    #looking_genre()
-    #looking_artist()
-    
-    #results = searching_for_artist("Coldplay")
-    #print(results["name"])
-    
-    #artist_id = results["id"]
-    #print(artist_id)
-    
-    #songs = get_songs_by_artist(artist_id)
-    #print(songs)
-    #for idx, song in enumerate(songs):
-    #    print(f"{idx + 1}. {song['name']}")
-    
-    #word = "work"
-    #detect_word_in_inout(word)
-    
-    chat_bot()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=8000, debug=True)
 

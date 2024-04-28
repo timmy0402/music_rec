@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <title>Music Recomendation</title>
   <link href="css/1.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 
 <body>
@@ -55,7 +53,7 @@
             <input type="text" id="textbox" placeholder="Talk to ChatBot" name="name">
             <button onclick="chatbot_clickevent()">Enter</button>
             <div id="displayArea"></div>
-
+            <p id="list"></p>
             <script type="text/javascript"
               src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.sin.js"></script>
 
@@ -63,16 +61,25 @@
               function chatbot_clickevent() {
                 // Get the value from the text box / / Replace with chatbot
                 var text = document.getElementById("textbox").value;
+                let out = ""
                 $.ajax({
-                  url: 'http://localhost:5000/run_python',
-                  method: 'POST',
-                  contentType: 'test/plain',
-                  data: text,
+                  url: 'http://localhost:8000/run_python',
+                  type: 'POST',
+                  contentType: 'application/json',
+                  data: JSON.stringify({ prompt: text }),
+                  success: function (response) {
+                    console.log(response.result);
+                    const botOutput = response.result
+                    for (let i = 1; i < botOutput.length; ++i) {
+                      out += botOutput[i] + "<br>";
+                    }
+                    // Display the text in a p
+                    document.getElementById("list").innerHTML = out;
+                  }
                 });
 
 
-                // Display the text in a div
-                document.getElementById("displayArea").innerText = text;
+
               }
 
 
