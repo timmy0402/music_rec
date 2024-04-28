@@ -22,7 +22,6 @@ CORS(app)
 def run_python():
     data = request.get_json()
     result = chat_bot(data['prompt'])
-    print (result)
     return jsonify({'result':chat_bot(data['prompt'])})
 
 #getting token
