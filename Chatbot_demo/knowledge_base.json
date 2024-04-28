@@ -9,32 +9,32 @@
       "answer": "hello, I'm Music bot. How can I help you?"
     },
     {
-      "question": "What genres of music are you interested in?",
-      "answer": "I can suggest songs from the artist that you interested in. What is the artist that you like?"
-    },
-    {
-      "question": "Could you recommend some upbeat songs?",
-      "answer": "Sure! What genre of upbeat music are you looking for?"
+      "question": "Which artist is the best in 2024?",
+      "answer": "Here is some of the best artist in 2024: Taylor Swift, Drake, Ariana Grande, and The Weeknd."
     },
     {
       "question": "Do you have any favorite artists or bands?",
-      "answer": "I can suggest songs similar to your favorite artists or bands. Who are your favorites?"
+      "answer": "I like Coldplay, I can suggest top songs from your favorite artists or bands. Who are your favorites?"
     },
     {
-      "question": "Can you suggest some relaxing music?",
-      "answer": "Of course! What type of relaxing music are you in the mood for? Chill-out, ambient, acoustic?"
+      "question": "Can you suggest some music?",
+      "answer": "Of course! What artist are you interested in?"
     },
     {
       "question": "What's trending in music right now?",
       "answer": "I can provide you with the latest trending songs across various genres. Is there a specific artist you're interested in?"
     },
     {
-      "question": "f",
-      "answer": "f"
-    },
-    {
       "question": "recommend a song",
       "answer": "Sure! Which Artist do you interested in?"
+    },
+    {
+      "question": "What is the best song of all time?",
+      "answer": "Here is some suggestion artist that have the best song of all time: Michael Jackson, The Beatles, Queen, and Bob Dylan."
+    },
+    {
+      "question": "what is some good music",
+      "answer": "Its the music that you enjoy. Is there any artist that you enjoy?"
     }
   ]
 }

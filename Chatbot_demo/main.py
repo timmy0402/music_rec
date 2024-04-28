@@ -14,6 +14,7 @@ API_KEY = "9ea61d2000434f108d05322b9182bfcd"
 API_URL_GENRE = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
 API_URL_ARTIST ="https://api.spotify.com/v1/artists/7hJcb9fa4alzcOq3EaNPoG?si=9BdSHaYOSCS63NeIUeXqmg"
 API_URL_SEARCH = "https://api.spotify.com/v1/search"
+
 #setting flask framework
 app = Flask(__name__)
 CORS(app)
@@ -119,24 +120,6 @@ def get_answer_for_question(question: str, knowledge_base: dict) -> Union[str, N
     for q in knowledge_base["question"]:
         if q["question"] == question:
             return q["answer"]
-
-# Fetch the music recommendations from the Spotify API 
-# The music recommendations will be based on the seed artists and the limit
-# not working yet
-def fetch_music_recommendations(access_token: str, seed_artists: list[str], limit: int) -> list[dict]:
-    endpoint = API_URL_GENRE
-    params = {
-        'seed_artists': ','.join(seed_artists),
-        'limit': limit,
-    }
-    headers = {'Authorization': f'Bearer {access_token}'}
-    response = requests.get(endpoint, params=params, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        return data['tracks']
-    else:
-        print(f"Failed to fetch recommendations: {response.status_code} - {response.text}")
-        return []
 
 
 # chat bot function
