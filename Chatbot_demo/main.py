@@ -139,9 +139,12 @@ def chat_bot(user_input):
         #print(f'bot: {answer}' if answer else "bot: I don't know the answer.")
         if answer:
             return f'bot: {answer}'
+        
     else:    
         artist_name = user_input
         results = searching_for_artist(artist_name)
+        if results == None:
+            return " Not real"
         responseList = [""]
         #print("Top songs from: " + results["name"])
         responseList.append(("Top songs from: " + results["name"]))
