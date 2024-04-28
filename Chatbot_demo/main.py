@@ -5,6 +5,7 @@ import base64
 from difflib import get_close_matches
 from typing import Union
 from flask import request, Flask
+from flask_cors import CORS
 
 # getting the token and endpoints for Spotify API
 API_KEY = "9ea61d2000434f108d05322b9182bfcd"
@@ -15,6 +16,12 @@ API_URL_ARTIST ="https://api.spotify.com/v1/artists/7hJcb9fa4alzcOq3EaNPoG?si=9B
 API_URL_SEARCH = "https://api.spotify.com/v1/search"
 #setting flask framework
 app = Flask(__name__)
+CORS(app)
+
+@app.route('/run_python', methods=['GET','POST'])
+def run_python():
+    chat_bot(request.data)
+    return request.data
 
 #getting token
 def token_getter():
@@ -171,23 +178,6 @@ def chat_bot(user_input):
         #        save_knowledge_base('knowledge_base.json', knowledge_base)
         #        print('bot: Thank you for teaching me!')
 
-# Run the chat bot
-if __name__ == "__main__":
-    #token_getter()
-    #looking_genre()
-    #looking_artist()
-    
-    #results = searching_for_artist("Coldplay")
-    #print(results["name"])
-    
-    #artist_id = results["id"]
-    #print(artist_id)
-    
-    #songs = get_songs_by_artist(artist_id)
-    #print(songs)
-    #for idx, song in enumerate(songs):
-    #    print(f"{idx + 1}. {song['name']}")
-    
-    
-    chat_bot()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=8000, debug=True)
 
