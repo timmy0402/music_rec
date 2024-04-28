@@ -70,9 +70,15 @@
                   success: function (response) {
                     console.log(response.result);
                     const botOutput = response.result
-                    for (let i = 1; i < botOutput.length; ++i) {
-                      out += botOutput[i] + "<br>";
+                    if (botOutput.constructor === Array) {
+                      for (let i = 1; i < botOutput.length; ++i) {
+                        out += botOutput[i] + "<br>";
+                      }
                     }
+                    else {
+                      out = botOutput;
+                    }
+
                     // Display the text in a p
                     document.getElementById("list").innerHTML = out;
                   }
