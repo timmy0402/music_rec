@@ -4,6 +4,7 @@
 # Music Recommender
 
 Welcome to the **Music Recommender** project! 🎵🎧
+**2024 UWB Hacks AI Entertainment Track Winner(Top 8 overall)**
 
 ## Overview
 
